@@ -104,12 +104,13 @@ def main():
         # URL
         url = "https://myappwithgithub.herokuapp.com/predict/" + str(customer_number)
         response = requests.get(url, headers=headers)
+        st.write(response)
         try:
              proba = print(response.json()['Probability'])
              classe = print(response.json()['Classe'])
         except json.JSONDecodeError as identifier:
              print("Error occur", identifier.msg)
-        st.write(proba,classe)
+
         ### --- FILTER DATAFRAME BASED ON SELECTION
         mask_customer = (df['SK_ID_CURR']==customer_number)
 #         mask_prediction = int(df[mask_customer]['Prediction'])
@@ -242,8 +243,9 @@ def main():
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
             feature = pd.read_csv(uploaded_file,delimiter=";")
             url = "https://myappwithgithub.herokuapp.com/predict_model"
-            # response = requests.post(url, data=json.dumps(feature), headers=headers)
-            response = requests.post(url, data=feature, headers=headers)
+            response = requests.post(url, data=json.dumps(feature), headers=headers)
+            # response = requests.post(url, data=feature, headers=headers)
+            st.write(response)
 
 
             try:
