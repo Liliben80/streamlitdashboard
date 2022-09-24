@@ -104,10 +104,10 @@ def main():
         # URL
         url = "https://myappwithgithub.herokuapp.com/predict/" + str(customer_number)
         response = requests.get(url, headers=headers)
-        st.write(response)
+
         try:
-             proba = print(response.json()['Probability'])
-             classe = print(response.json()['Classe'])
+             proba = st.write(response.json()['Probability'])
+             classe = st.write(response.json()['Classe'])
         except json.JSONDecodeError as identifier:
              print("Error occur", identifier.msg)
 
