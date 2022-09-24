@@ -243,7 +243,7 @@ def main():
             response = requests.post(url, data=feature, headers=headers)
 
             try:
-                proba = response.json()['Probability'])
+                proba = response.json()['Probability']
                 classe = response.json()['Classe']
             except json.JSONDecodeError as identifier:
                  print("Error occur", identifier.msg)
