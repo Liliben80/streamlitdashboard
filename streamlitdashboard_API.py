@@ -239,8 +239,8 @@ def main():
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
             feature = pd.read_csv(uploaded_file,delimiter=";")
             url = "https://myappwithgithub.herokuapp.com/predict_model"
-            # response = requests.post(url, data=json.dumps(feature), headers=headers)
-            response = requests.post(url, data=feature, headers=headers)
+            response = requests.post(url, data=json.dumps(feature), headers=headers)
+            # response = requests.post(url, data=feature, headers=headers)
 
             try:
                 proba = response.json()['Probability']
