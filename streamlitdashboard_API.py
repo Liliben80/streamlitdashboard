@@ -102,7 +102,7 @@ def main():
         # En-tête
         headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
         # URL
-        url = "https://myappwithgithub.herokuapp.com/predict/" + customer_number
+        url = "https://myappwithgithub.herokuapp.com/predict/" + str(customer_number)
         response = requests.get(url, headers=headers)
         try:
              proba = print(response.json()['Probability'])
@@ -241,7 +241,9 @@ def main():
         if uploaded_file is not None:
             feature = pd.read_csv(uploaded_file,delimiter=";")
             url = "https://myappwithgithub.herokuapp.com/predict_model"
-            response = requests.post(url, data=json.dumps(feature), headers=headers)
+            # response = requests.post(url, data=json.dumps(feature), headers=headers)
+            response = requests.post(url, data=feature, headers=headers)
+
 
             try:
                 proba = print(response.json()['Probability'])
