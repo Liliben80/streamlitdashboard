@@ -113,11 +113,6 @@ def main():
 
         ### --- FILTER DATAFRAME BASED ON SELECTION
         mask_customer = (df['SK_ID_CURR']==customer_number)
-#         mask_prediction = int(df[mask_customer]['Prediction'])
-#         mask_probability = float(df[mask_customer]['Probability'])
-#         decision = "OUI" if mask_prediction==1 else "NON"
-#         st.markdown(f'*Probabilité de solvabilité: {mask_probability:.2f}*')
-#         st.markdown(f'*Crédit accepté: {decision}*')
         st.markdown(f'*Probabilité de solvabilité: {proba:.2f}*')
         st.markdown(f'*Crédit accepté: {classe}*')
         
@@ -214,27 +209,28 @@ def main():
         plt.xlabel("Scores", fontsize=16)
         plt.legend()
         st.pyplot(fig)
-        
+
         ### --- Map
         st.text("Représentation graphique de l'importance des caractéristiques")
         # table
-        tab_select1 = pd.DataFrame(shap_values[:,0:2].values, columns=["feat1","feat2"])
-        tab_select2 = pd.DataFrame(shap_values[num_id:num_id+1,0:2].values, columns=["feat1","feat2"])
-        # Plot        
-        trace1 = [go.Scatter(x=tab_select1[["feat1"]],
-                                y=tab_select1[["feat2"]])]
-        trace2 = [go.Scatter(x=tab_select2[["feat1"]],
-                                y=tab_select2[["feat2"]])]
-        # Style layout 
-        layout = go.Layout({"title": "Client au regard de sa classe",
-                       "yaxis": {"title":features_names[1]},
-                       "xaxis": {"title":features_names[2]}
-              }) 
-        fig = go.Figure(data = trace1.data + trace2.data, layout=layout)
-        
-        st.plotly_chart(fig, use_container_width=True)
-        
-#    -------------------------
+        tab_select1 = pd.DataFrame(shap_values[:, 0:2].values, columns=["feat1", "feat2"])
+        tab_select2 = pd.DataFrame(shap_values[num_id:num_id + 1, 0:2].values, columns=["feat1", "feat2"])
+        # Plot
+        fig = plt.figure()
+        plt.scatter(x=tab_select1[["feat1"]],
+                    y=tab_select1[["feat2"]],
+                    color='blue',
+                    label='Global')
+        plt.scatter(x=tab_select2[["feat1"]],
+                    y=tab_select2[["feat2"]],
+                    color='green',
+                    label='Local')
+        plt.xlabel(features_names[1], fontsize=16)
+        plt.ylabel(features_names[2], fontsize=16)
+        plt.legend()
+        st.pyplot(fig)
+
+    #    -------------------------
     else:
         st.title("Prédiction de nouveau client")
         uploaded_file = st.file_uploader("Importer les caractéristiques du client.")
@@ -242,11 +238,10 @@ def main():
         if uploaded_file is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
             feature = pd.read_csv(uploaded_file,delimiter=";")
+            st.write(feature)
             url = "https://myappwithgithub.herokuapp.com/predict_model"
             response = requests.post(url, data=json.dumps(feature), headers=headers)
             # response = requests.post(url, data=feature, headers=headers)
-            st.write(response)
-
 
             try:
                 proba = print(response.json()['Probability'])
@@ -254,13 +249,6 @@ def main():
             except json.JSONDecodeError as identifier:
                  print("Error occur", identifier.msg)
             # --- MODEL APPLICATION
-#             probability = model.predict_proba(feature)
-#             # I dont'understand
-#             probability = str(probability)
-#             probability = probability.split()[0]
-#             probability = probability.replace("[[", "")
-#             probability = float(probability)
-#             decision = "OUI" if probability>proba_threshold else "NON"
             st.markdown(f'*Probabilité de solvabilité: {proba}*')
             st.markdown(f'*Crédit accepté: {classe}*')
             
