@@ -106,8 +106,8 @@ def main():
         response = requests.get(url, headers=headers)
 
         try:
-             proba = st.write(response.json()['Probability'])
-             classe = st.write(response.json()['Classe'])
+             proba = response.json()['Probability']
+             classe = response.json()['Classe']
         except json.JSONDecodeError as identifier:
              print("Error occur", identifier.msg)
 
