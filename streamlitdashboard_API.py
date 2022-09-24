@@ -29,8 +29,8 @@ def main():
 
     # Features
     features_sample = load_feat()
-    features_sample = features_sample.drop(columns=["Train","index","index","index","index","index","index","index","index","index","index","index","index","index","index","index","index","index"])#à revoir la sauvegarde
-    # Tables
+
+  # Tables
     y = features_sample[["TARGET"]]
     X = features_sample.drop(columns=["TARGET"])
     X.index = range(X.shape[0])
