@@ -109,7 +109,7 @@ def main():
              classe = print(response.json()['Classe'])
         except json.JSONDecodeError as identifier:
              print("Error occur", identifier.msg)
-           
+        st.write(proba,classe)
         ### --- FILTER DATAFRAME BASED ON SELECTION
         mask_customer = (df['SK_ID_CURR']==customer_number)
 #         mask_prediction = int(df[mask_customer]['Prediction'])
@@ -239,6 +239,7 @@ def main():
         uploaded_file = st.file_uploader("Importer les caractéristiques du client.")
         ### --- SELECTION OF VECTOR
         if uploaded_file is not None:
+            headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
             feature = pd.read_csv(uploaded_file,delimiter=";")
             url = "https://myappwithgithub.herokuapp.com/predict_model"
             # response = requests.post(url, data=json.dumps(feature), headers=headers)
