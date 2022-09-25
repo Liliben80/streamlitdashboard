@@ -246,8 +246,8 @@ def main():
         ### --- SELECTION OF VECTOR
         if input_vector is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-            feature = json.dumps(input_vector)
-            st.write(feature)
+            feature = json.dumps(input_vector.to_dict())
+            st.write(type(feature),feature)
             url = "https://myappwithgithub.herokuapp.com/predict_model"
             response = requests.post(url, data=feature, headers=headers)
             st.write(response)
