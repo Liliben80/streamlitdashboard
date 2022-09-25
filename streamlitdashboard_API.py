@@ -251,7 +251,6 @@ def main():
             url = "https://myappwithgithub.herokuapp.com/predict_model"
             response = requests.post(url, data=feature, headers=headers)
             st.write(response)
-              st.plotly_chart(fig)
 
 # @st.cache(allow_output_mutation=True)
 @st.cache
