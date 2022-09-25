@@ -238,7 +238,7 @@ def main():
         if uploaded_file is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
             st.write(uploaded_file)
-            feature = open(uploaded_file,"w")
+            feature = open(uploaded_file.name,"w")
             feature = feature.read()
             feature = json.dumps(feature)
 
