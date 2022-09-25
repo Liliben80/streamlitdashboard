@@ -240,7 +240,6 @@ def main():
             #feature = open(uploaded_file,"w")
             #feature = feature.read()
             #feature = pd.read_csv(uploaded_file)
-            feature = np.load(uploaded_file,allow_pickle=True)
             feature = json.load(open(uploaded_file, "r"))
             feature = json.dumps(feature)
 
