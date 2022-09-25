@@ -240,36 +240,32 @@ def main():
         input_vector = st.text_input("Entrer les caractéristiques du client.")
         ### --- SELECTION OF VECTOR
         if uploaded_file is not None:
-            #headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-            #feature = open(uploaded_file,"w")
-            #feature = feature.read()
-            #feature = pd.read_csv(uploaded_file)
-            #feature = json.load(open(uploaded_file, "r"))
-            #feature = json.dumps(feature)
+            headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
+            feature = json.dumps(input_vector)
 
-            #url = "https://myappwithgithub.herokuapp.com/predict_model"
-            #response = requests.post(url, data=feature, headers=headers)
-            #try:
-            #    proba = response.json()['Probability']
-            #    classe = response.json()['Classe']
-            #except json.JSONDecodeError as identifier:
-            #     print("Error occur", identifier.msg)
+            url = "https://myappwithgithub.herokuapp.com/predict_model"
+            response = requests.post(url, data=feature, headers=headers)
+            try:
+                proba = response.json()['Probability']
+                classe = response.json()['Classe']
+            except json.JSONDecodeError as identifier:
+                 print("Error occur", identifier.msg)
 
             # --- MODEL APPLICATION
-            #st.markdown(f'*Probabilité de solvabilité: {proba}*')
-            #st.markdown(f'*Crédit accepté: {classe}*')
+            st.markdown(f'*Probabilité de solvabilité: {proba}*')
+            st.markdown(f'*Crédit accepté: {classe}*')
 
-            feature = pd.read_csv(uploaded_file, delimiter=";")
-            # --- MODEL APPLICATION
-            probability = model.predict_proba(feature)
-            # I dont'understand
-            probability = str(probability)
-            probability = probability.split()[0]
-            probability = probability.replace("[[", "")
-            probability = float(probability)
-            decision = "OUI" if probability > proba_threshold else "NON"
-            st.markdown(f'*Probabilité de solvabilité: {probability}*')
-            st.markdown(f'*Crédit accepté: {decision}*')
+#             feature = pd.read_csv(uploaded_file, delimiter=";")
+#             # --- MODEL APPLICATION
+#             probability = model.predict_proba(feature)
+#             # I dont'understand
+#             probability = str(probability)
+#             probability = probability.split()[0]
+#             probability = probability.replace("[[", "")
+#             probability = float(probability)
+#             decision = "OUI" if probability > proba_threshold else "NON"
+#             st.markdown(f'*Probabilité de solvabilité: {probability}*')
+#             st.markdown(f'*Crédit accepté: {decision}*')
 
             ### --- PROBABILITY GAUGE
             plot_bgcolor = "#def"
