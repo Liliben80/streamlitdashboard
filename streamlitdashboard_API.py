@@ -40,6 +40,8 @@ def main():
     X = X.drop(columns=["SK_ID_CURR"])
 
    # model
+    model = load_model()
+
     importance = load_globale_importance()
     
     shap_values = load_locale_importance()
@@ -336,6 +338,9 @@ def load_globale_importance():
     return pickle.load(open('globale_importance.pkl','rb'))
 def load_locale_importance():
     return pickle.load(open('locale_importance.pkl','rb'))
-    
+'))
+def load_model():
+    return pickle.load(open('C:/Users/zahra/P7_Ben Ali_Linda/output/model.pkl','rb'))
+
 if __name__ == '__main__': 
     main()
