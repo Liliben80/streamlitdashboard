@@ -237,9 +237,9 @@ def main():
         ### --- SELECTION OF VECTOR
         if uploaded_file is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-            feature = pd.read_csv(uploaded_file,delimiter=";")
-            feature = json.dumps(feature.to_dict())
-            st.write(feature)
+            feature = open("C:/Users/zahra/P7_Ben Ali_Linda/streamlitdashboard/vector_v1.txt", "r")
+f           feature = feature.read()
+            feature = json.dumps(feature)
 
             url = "https://myappwithgithub.herokuapp.com/predict_model"
             response = requests.post(url, data=feature, headers=headers)
