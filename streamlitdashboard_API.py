@@ -100,7 +100,7 @@ def main():
     elif page == "Prédiction - numéro du client":
         st.title('Prédiction des clients existants')
         ### --- SELECTION OF CUSTOMER
-        customer_number = st.number_input("Saisir le numéro du client : ", min_value=X_id['SK_ID_CURR'].min(),max_value=X_id['SK_ID_CURR'].max())
+        customer_number = st.selectbox("Choisir le numéro du client : ", list(X_id['SK_ID_CURR'].sort_values()))
         # En-tête
         headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
         # URL
@@ -124,8 +124,8 @@ def main():
         quadrant_text = ["", "<b>Accepté</b>", "<b>Refusé</b>"]
         n_quadrants = len(quadrant_colors) - 1
 
-        current_value = float(df[mask_customer]['Probability'])
-        #current_value = proba
+        #current_value = float(df[mask_customer]['Probability'])
+        current_value = proba
         min_value = 0
         max_value = 1
         hand_length = np.sqrt(2) / 4
@@ -181,7 +181,8 @@ def main():
         st.text("Importance des caractéristiques du client")
         # Plot summary_plot
         st.set_option('deprecation.showPyplotGlobalUse', False)
-        num_id = X_id[X_id["SK_ID_CURR"] == customer_number].index
+        num_id = X_id[X_id["SK_ID_CURR"] == customer_number].index[0]
+
         st.pyplot(shap.plots.bar(shap_values[num_id]))
         
         st.text("Distribution de l'importance d'une caractéristique selon la classe")
