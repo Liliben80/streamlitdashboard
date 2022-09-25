@@ -181,8 +181,7 @@ def main():
         st.text("Importance des caractéristiques du client")
         # Plot summary_plot
         st.set_option('deprecation.showPyplotGlobalUse', False)
-        num_id = X_id[X_id["SK_ID_CURR"] == customer_number].index[0]
-        st.write(X_id)
+        num_id = X_id[X_id["SK_ID_CURR"] == customer_number].index
         st.pyplot(shap.plots.bar(shap_values[num_id]))
         
         st.text("Distribution de l'importance d'une caractéristique selon la classe")
