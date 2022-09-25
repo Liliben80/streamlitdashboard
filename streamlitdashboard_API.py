@@ -124,8 +124,8 @@ def main():
         quadrant_text = ["", "<b>Accepté</b>", "<b>Refusé</b>"]
         n_quadrants = len(quadrant_colors) - 1
 
-#         current_value = float(df[mask_customer]['Probability'])
-        current_value = proba
+        current_value = float(df[mask_customer]['Probability'])
+        #current_value = proba
         min_value = 0
         max_value = 1
         hand_length = np.sqrt(2) / 4
