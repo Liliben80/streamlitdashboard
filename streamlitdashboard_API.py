@@ -237,7 +237,7 @@ def main():
         ### --- SELECTION OF VECTOR
         if uploaded_file is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-            feature = open("vector_v1.txt", "r")
+            feature = open(uploaded_file,"r")
             feature = feature.read()
             feature = json.dumps(feature)
 
