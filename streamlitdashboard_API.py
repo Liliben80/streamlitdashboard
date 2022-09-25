@@ -233,11 +233,11 @@ def main():
     #    -------------------------
     else:
         st.title("Prédiction de nouveau client")
-        uploaded_file = st.file_uploader("Importer les caractéristiques du client.")
+        uploaded_file = st.file_uploader("Importer les caractéristiques du client.", accept_multiple_files=True)
         ### --- SELECTION OF VECTOR
         if uploaded_file is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-            feature = open(uploaded_file,"r")
+            #feature = open(uploaded_file,"r")
             feature = feature.read()
             feature = json.dumps(feature)
 
