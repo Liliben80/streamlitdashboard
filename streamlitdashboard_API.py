@@ -233,14 +233,14 @@ def main():
     #    -------------------------
     else:
         st.title("Prédiction de nouveau client")
-        uploaded_file = st.file_uploader("Importer les caractéristiques du client.", accept_multiple_files=True)
+        uploaded_file = st.file_uploader("Importer les caractéristiques du client.")
         ### --- SELECTION OF VECTOR
         if uploaded_file is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
             #feature = open(uploaded_file,"w")
             #feature = feature.read()
             #feature = pd.read_csv(uploaded_file)
-            feature = np.load(uploaded_file, allow_pickle='TRUE')
+            feature = np.load(uploaded_file)
             feature = json.dumps(feature)
 
             url = "https://myappwithgithub.herokuapp.com/predict_model"
