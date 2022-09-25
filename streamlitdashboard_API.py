@@ -236,7 +236,8 @@ def main():
     #    -------------------------
     else:
         st.title("Prédiction de nouveau client")
-        uploaded_file = st.file_uploader("Importer les caractéristiques du client (fichier CSV).")
+        #uploaded_file = st.file_uploader("Importer les caractéristiques du client (fichier CSV).")
+        input_vector = st.text_input("Entrer les caractéristiques du client.")
         ### --- SELECTION OF VECTOR
         if uploaded_file is not None:
             #headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
