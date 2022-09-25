@@ -239,7 +239,7 @@ def main():
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
             #feature = open(uploaded_file,"w")
             #feature = feature.read()
-            feature = pd.read_csv("C:/Users/zahra/P7_Ben Ali_Linda/streamlitdashboard/vector_v1.txt")
+            feature = pd.read_csv(uploaded_file)
             feature = json.dumps(feature)
 
             url = "https://myappwithgithub.herokuapp.com/predict_model"
