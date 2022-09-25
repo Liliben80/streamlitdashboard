@@ -239,7 +239,7 @@ def main():
         #uploaded_file = st.file_uploader("Importer les caractéristiques du client (fichier CSV).")
         input_vector = st.text_input("Entrer les caractéristiques du client.")
         ### --- SELECTION OF VECTOR
-        if uploaded_file is not None:
+        if input_vector is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
             feature = json.dumps(input_vector)
 
