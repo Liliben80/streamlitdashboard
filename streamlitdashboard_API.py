@@ -240,7 +240,7 @@ def main():
             #feature = open(uploaded_file,"w")
             #feature = feature.read()
             #feature = pd.read_csv(uploaded_file)
-            feature = np.load('feature.npy', allow_pickle='TRUE')
+            feature = np.load(uploaded_file, allow_pickle='TRUE')
             feature = json.dumps(feature)
 
             url = "https://myappwithgithub.herokuapp.com/predict_model"
