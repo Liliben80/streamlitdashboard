@@ -265,7 +265,7 @@ def main():
             probability = probability.split()[0]
             probability = probability.replace("[[", "")
             probability = float(probability)
-            decision = "OUI" if probability > proba else "NON"
+            decision = "OUI" if probability > proba_threshold else "NON"
             st.markdown(f'*Probabilité de solvabilité: {probability}*')
             st.markdown(f'*Crédit accepté: {decision}*')
 
