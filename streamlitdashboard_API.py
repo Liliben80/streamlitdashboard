@@ -94,7 +94,12 @@ def main():
 #             print('Feature: %0d, Score: %.5f' % (i,v))
 #         print(importance_table.head())
                  # Plot feature importance
-        st.bar_chart(data=importance_table, x="Caractéristiques", y="Scores", width=0, height=0, use_container_width=True)
+        st.bar_chart(data=importance_table,
+                     x="Caractéristiques",
+                     y="Scores",
+                     width=300,
+                     height=300,
+                     use_container_width=True)
         
  #    -------------------------       
     elif page == "Prédiction - numéro du client":
@@ -237,7 +242,10 @@ def main():
     else:
         st.title("Prédiction de nouveau client")
         #uploaded_file = st.file_uploader("Importer les caractéristiques du client (fichier CSV).")
-        input_vector = st.text_input("Entrer les caractéristiques du client.")
+        input_vector = st.text_input("Entrer les caractéristiques du client.",
+        label_visibility=st.session_state.visibility,
+        disabled=st.session_state.disabled,
+        placeholder=st.session_state.placeholder)
         ### --- SELECTION OF VECTOR
         if input_vector is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
@@ -249,7 +257,7 @@ def main():
                 proba = response.json()['Probability']
                 classe = response.json()['Classe']
             except json.JSONDecodeError as identifier:
-                 print("Error occur", identifier.msg)
+                print("Error occur", identifier.msg)
 
             # --- MODEL APPLICATION
             st.markdown(f'*Probabilité de solvabilité: {proba}*')
@@ -273,8 +281,8 @@ def main():
             quadrant_text = ["", "<b>Accepté</b>", "<b>Refusé</b>"]
             n_quadrants = len(quadrant_colors) - 1
 
-            current_value = probability
-            # current_value = proba
+            #current_value = probability
+            current_value = proba
             min_value = 0
             max_value = 1
             hand_length = np.sqrt(2) / 4
