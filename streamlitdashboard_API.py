@@ -250,7 +250,7 @@ def main():
             feature = json.dumps(import_vector)
             url = "https://myappwithgithub.herokuapp.com/predict_model"
             response = requests.post(url, data=feature, headers=headers)
-            st.write(response)
+
             try:
                 proba = response.json()['Probability']
                 classe = response.json()['Classe']
