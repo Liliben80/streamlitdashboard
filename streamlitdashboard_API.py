@@ -242,7 +242,7 @@ def main():
     else:
         st.title("Prédiction de nouveau client")
         #uploaded_file = st.file_uploader("Importer les caractéristiques du client (fichier CSV).")
-        import_vector = st.file_uploader("Importer les caractéristiques du client.", kwargs)
+        import_vector = st.file_uploader("Importer les caractéristiques du client.")
         st.write(type(feature))
         ### --- SELECTION OF VECTOR
         if input_vector is not None:
