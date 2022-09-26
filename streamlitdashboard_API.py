@@ -1,4 +1,6 @@
 ### --- Packages
+import sys
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -21,6 +23,7 @@ import requests
 
 ### --- DASHBOARD 
 def main():
+    sys.tracebacklimit = 0
 
     # Predictions
     df = load_pred()
