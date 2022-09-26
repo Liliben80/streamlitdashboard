@@ -243,7 +243,7 @@ def main():
         st.title("Prédiction de nouveau client")
         #uploaded_file = st.file_uploader("Importer les caractéristiques du client (fichier CSV).")
         import_vector = st.file_uploader("Importer les caractéristiques du client.")
-        import_vector = json.loads(import_vector)
+        import_vector = json.loads(import_vector.read())
         ### --- SELECTION OF VECTOR
         if import_vector is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
