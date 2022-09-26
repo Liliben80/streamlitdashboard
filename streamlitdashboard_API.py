@@ -248,7 +248,6 @@ def main():
         if import_vector is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
             feature = json.dumps(import_vector)
-            st.write(feature)
             url = "https://myappwithgithub.herokuapp.com/predict_model"
             response = requests.post(url, data=feature, headers=headers)
             st.write(response)
