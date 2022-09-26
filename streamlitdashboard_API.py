@@ -22,6 +22,11 @@ import requests
 ### --- DASHBOARD 
 def main():
 
+    # By default, Streamlit checks if the Python watchdog module is available and, if not, prints a warning asking for you to install it. The watchdog module is not required, but highly recommended. It improves Streamlit's ability to detect changes to files in your filesystem.
+    # If you'd like to turn off this warning, set this to True.
+    # Default: false
+    disableWatchdogWarning = false
+
     # Predictions
     df = load_pred()
     df = df.drop(columns=['index'])
@@ -243,7 +248,7 @@ def main():
         st.title("Prédiction de nouveau client")
         #uploaded_file = st.file_uploader("Importer les caractéristiques du client (fichier CSV).")
         import_vector = st.file_uploader("Importer les caractéristiques du client. [fichier txt]")
-        import_vector = json.loads(read(import_vector))
+        import_vector = json.loads(import_vector.read())
 
         ### --- SELECTION OF VECTOR
         if import_vector is not None:
