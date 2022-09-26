@@ -242,11 +242,11 @@ def main():
     else:
         st.title("Prédiction de nouveau client")
         #uploaded_file = st.file_uploader("Importer les caractéristiques du client (fichier CSV).")
-        input_vector = st.text_area("Entrer les caractéristiques du client.")
+        input_vector = st.text_area("Entrer les caractéristiques du client.",st.session_state.var[key])
         ### --- SELECTION OF VECTOR
         if input_vector is not None:
             headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-            feature = json.dumps(input_vector.to_dict())
+            feature = json.dumps(input_vector)
             st.write(type(feature),feature)
             url = "https://myappwithgithub.herokuapp.com/predict_model"
             response = requests.post(url, data=feature, headers=headers)
