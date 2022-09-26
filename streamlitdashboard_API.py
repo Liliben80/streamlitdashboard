@@ -242,7 +242,7 @@ def main():
     else:
         st.title("Prédiction de nouveau client")
         #uploaded_file = st.file_uploader("Importer les caractéristiques du client (fichier CSV).")
-        import_vector = st.file_uploader("Importer les caractéristiques du client. [fichier txt])
+        import_vector = st.file_uploader("Importer les caractéristiques du client. [fichier txt]")
         import_vector = json.loads(import_vector.read())
 
         ### --- SELECTION OF VECTOR
