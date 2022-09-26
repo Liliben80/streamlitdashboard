@@ -249,16 +249,11 @@ def main():
         import_vector = json.loads(import_vector.read())
 
         ### --- SELECTION OF VECTOR
-        if import_vector is not None:
-            headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-        try:
-            feature = json.dumps(import_vector.read())
-        except:
-            # Prevent the error from propagating into your Streamlit app.
-            pass
+        headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
+        feature = json.dumps(import_vector.read())
 
-            url = "https://myappwithgithub.herokuapp.com/predict_model"
-            response = requests.post(url, data=feature, headers=headers)
+        url = "https://myappwithgithub.herokuapp.com/predict_model"
+        response = requests.post(url, data=feature, headers=headers)
 
             try:
                 proba = response.json()['Probability']
